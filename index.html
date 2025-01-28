@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>汤圆祝福</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+      }
+      body {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        background: url("images/背景.png") no-repeat center center/cover;
+      }
+      .box {
+        opacity: 0; /* 初始状态透明 */
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-repeat: no-repeat;
+        position: absolute;
+        top: 0;
+        left: 0;
+        animation-fill-mode: forwards; /* 保持动画结束时的状态 */
+        z-index: 1; /* 所有元素初始z-index相同 */
+      }
+      .box1 {
+        background-image: url("images/1黑芝麻汤圆-sm.png");
+        animation: drop 1s 0.5s forwards;
+        width: 68px;
+        height: 60px;
+        z-index: 33;
+        left: 182px;
+        top: 315px;
+      }
+      .box2 {
+        background-image: url("images/2花生汤圆-sm.png");
+        animation: drop 1s 1s forwards;
+        width: 85px;
+        height: 74px;
+        z-index: 33;
+        left: 215px;
+        top: 383px;
+      }
+      .box3 {
+        background-image: url("images/3龙井茶汤圆.png");
+        animation: drop 1s 1.5s forwards;
+        width: 63px;
+        height: 72px;
+        z-index: 33;
+        left: 311px;
+        top: 342px;
+      }
+      .box4 {
+        background-image: url("images/4玫瑰汤圆.png");
+        animation: drop 1s 2s forwards;
+        width: 81px;
+        height: 76px;
+        z-index: 33;
+        left: 124px;
+        top: 378px;
+      }
+      .box5 {
+        background-image: url("images/5紫薯汤圆.png");
+        animation: drop 1s 2.5s forwards;
+        width: 71px;
+        height: 66px;
+        z-index: 33;
+        left: 254px;
+        top: 301px;
+      }
+
+      @keyframes drop {
+        0% {
+          transform: translateY(-13000%);
+          opacity: 0; /* 动画开始时透明 */
+        }
+
+        100% {
+          transform: translateY(0);
+          opacity: 1; /* 动画结束时完全显示 */
+        }
+      }
+
+      #message {
+        display: none;
+        position: absolute;
+        top: 75%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 15px;
+        color: #010101;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 汤圆div -->
+    <div class="box box1" data-url="祝福页面1.html"></div>
+    <div class="box box2" data-url="祝福页面2.html"></div>
+    <div class="box box3" data-url="祝福页面3.html"></div>
+    <div class="box box4" data-url="祝福页面4.html"></div>
+    <div class="box box5" data-url="祝福页面5.html"></div>
+
+    <!-- 祝福信息 -->
+    <div id="message">请点击任意汤圆查收祝福</div>
+
+    <script>
+      // 获取所有带有data-url属性的.box元素
+      const boxes = document.querySelectorAll(".box");
+
+      // 使用箭头函数来解决闭包问题
+      boxes.forEach((box) => {
+        box.addEventListener("click", () => {
+          console.log(box, "box");
+          const url = box.getAttribute("data-url");
+          console.log(`Current Box URL: ${url}`); // 打印当前元素的data-url值
+          if (url) {
+            window.location.href = url;
+          } else {
+            console.error("No URL found for this element.");
+          }
+        });
+      });
+
+      // 动画结束后显示消息
+      setTimeout(() => {
+        document.getElementById("message").style.display = "block";
+      }, 3500); // Adjusted time to match the last delay + duration
+    </script>
+  </body>
+</html>
